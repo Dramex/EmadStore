@@ -1,6 +1,8 @@
 # Emad Store
 A basic store.
 
+Live at: https://dramex.github.io/emadstore/
+
 ## HTML
 - Create a homepage for your store. ✅
 - Create at least 2 other pages (this could include pages such as “about us”, “meet the team”, “shipping details”, etc). ✅ 
