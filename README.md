@@ -31,6 +31,6 @@ A basic store.
 
 ## Bonus
 - Clicking on an item should allow the user to see more details about the item, such as a brief description,.specifications and price
-- Animate background colours to change between different variants of colours (a bit of Googling here will help you).
+- Animate background colours to change between different variants of colours (a bit of Googling here will help you).  ✅
 - Animate item images to expand when hovered over (or clicked on if you prefer). ✅
 - The website should be responsive. ✅
