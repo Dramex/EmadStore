@@ -1,7 +1,7 @@
 # Emad Store
 A basic store.
 
-Live at: https://dramex.github.io/emadstore/
+Live at: https://dramex.github.io/EmadStore/
 
 ## HTML
 - Create a homepage for your store. ✅
