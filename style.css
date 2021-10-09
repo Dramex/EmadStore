@@ -1,0 +1,104 @@
+body, html {
+    background-image: url('./images/background.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.main {
+    margin-top: 2vh;
+}
+
+.inline {
+    display: inline;
+}
+
+.center {
+    text-align: center;
+}
+
+.mt-25 {
+    margin-top: 25px;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 35px auto auto auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.myGrid {
+    display: grid;
+    justify-content: center;
+    grid-column-gap: 10px;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto;
+}
+
+.myGrid div {
+    margin-top: 10px;
+}
+
+/* tablet */
+@media only screen and (max-width: 960px) {
+    .myGrid {
+        grid-template-columns: auto auto;
+    }
+}
+
+/* mobile */
+@media only screen and (max-width: 480px) {
+    .myGrid {
+        grid-template-columns: auto;
+    }
+}
+
+.navbar-brand {
+    font-weight: bold;
+    text-shadow: #474747 1px 1px 1px;
+}
+
+.badge-sale {
+    background-color: red;
+}
+
+.emad {
+    color: purple;
+}
+
+button, img {
+    padding: 2px!important;
+}
+img {
+    border: 1px solid black;
+}
+
+ul {
+    list-style: inside;
+}
+.card-img-top {
+    width: 450px;
+    height: 300px;
+    transition: transform .2s; /* Animation */
+}
+.card-img-top:hover {
+    transform: scale(1.5);
+    z-index: 1000;
+    position: sticky;
+}
+
+.img-filter-1 {
+    filter: contrast(200%);
+}
+
+.img-filter-2 {
+    filter: grayscale(50%);
+}
+
+
+
+footer {
+    margin-top: 60px;
+}
