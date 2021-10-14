@@ -268,12 +268,12 @@ if (document.getElementById("myGrid")) {
         : ``
     }
     <!-- Product image-->
-    <img class="card-img-top" src="${item.image}">
+    <img class="card-img-top" src="${item.image}" id="view-${index}">
     <!-- Product details-->
     <div class="card-body p-4">
         <div class="text-center">
             <!-- Product name-->
-            <h5 class="fw-bolder">${item.name}</h5>
+            <h5 class="fw-bolder"><a id="view-${index}-a">${item.name}</a></h5>
             <!-- Product reviews-->
             <div class="d-flex justify-content-center small text-warning mb-2">
                 <div class="bi-star-fill"></div>
@@ -293,18 +293,61 @@ if (document.getElementById("myGrid")) {
   </div>`;
 
     document.getElementById("myGrid").appendChild(node);
+    document.getElementById("view-"+ index).addEventListener("click", () => viewModal(item))
+    document.getElementById(`view-${index}-a`).addEventListener("click", () => viewModal(item))
     document.getElementById("add-" + index).addEventListener("click", () => {
       cart.push(item);
       Toast.fire({
         icon: "success",
         title: "added to cart successfully.",
       });
-
+ 
       updateHeader();
     });
   });
 }
 
+
+
+
+const viewModal = (item) => {
+  console.log("hi", item)
+  let modal = new bootstrap.Modal(document.getElementById('myModal'), {
+    keyboard: false
+  });
+  modal.show();
+  document.getElementById("modalTitle").innerText = item.name;
+  document.getElementById("modalTitle").innerText = item.name;
+  document.getElementById("modalBody").innerHTML = `
+  <div class="row">
+  <div class="col">
+    <img src="${item.image}" width="200px" />
+  </div>
+  <div class="col">
+  <h6>Color: ${item.color || "black"}</h6>
+  <h6>Price: ${item.price}</h6>
+  </div>
+</div>
+  `;
+
+  let addToCartButton =  document.getElementById('previewAddToCart');
+  addToCartButton.replaceWith(addToCartButton.cloneNode(true)); // remove old listeners by recreating the element 
+  addToCartButton = document.getElementById('previewAddToCart');
+
+  addToCartButton.addEventListener("click", (e) => {
+    console.log("added to cart", item);
+    modal.hide();
+    cart.push(item);
+    Toast.fire({
+      icon: "success",
+      title: "added to cart successfully.",
+    });
+
+    updateHeader();
+
+  })
+
+}
 const clearCart = () => {
   Toast.fire({
     icon: "success",
