@@ -318,6 +318,16 @@ const clearCart = () => {
 const promoButton = document.getElementById("promoButton");
 if(promoButton) promoButton.addEventListener("click", (e) => {
   e.preventDefault(); // prevent default browser behavior
+
+  if(discountApplied) {
+    promoButton.innerText = "Redeem";
+    document.getElementById("promo").value = '';
+    document.getElementById("promo").disabled = false;
+    discountApplied = undefined;
+    updateCheckout();
+    return;
+  }
+
   let code = document.getElementById("promo").value;
 
   if (code === "EMAD") {
@@ -337,6 +347,14 @@ if(promoButton) promoButton.addEventListener("click", (e) => {
   updateCheckout();
 });
 
+const delivery = (bool) => {
+    if(bool) {
+      document.getElementById("deliverAddress").style = "display: none";
+    } else {
+      document.getElementById("deliverAddress").style = "display: block";
+
+    }
+}
 const updateCheckout = () => {
   const checkoutList = document.getElementById("checkoutCartList");
   if(!checkoutList) return;

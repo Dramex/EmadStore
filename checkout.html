@@ -40,7 +40,27 @@
                       </form>
                     </div>
                     <div class="col-md-7 col-lg-8">
-                      <h4 class="mb-3">Billing address</h4>
+                      <h4 class="mb-3">How we should deliver?</h4>
+
+
+                      <div class="form-check">
+                        <input class="form-check-input" onclick="delivery(true);" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            I will collect it myself
+                        </label>
+                      </div>
+
+                      <div class="form-check">
+                        <input class="form-check-input"  onclick="delivery(false);" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Deliver it to my address
+                        </label>
+                      </div>
+          
+                    <hr class="my-4">
+
+                    <h4 class="mb-3">Billing address</h4>
+
                       <form class="needs-validation" novalidate="">
                         <div class="row g-3">
                           <div class="col-sm-6">
@@ -61,13 +81,17 @@
 
               
                           <div class="col-12">
-                            <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
+                            <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" placeholder="you@example.com">
                             <div class="invalid-feedback">
                               Please enter a valid email address for shipping updates.
                             </div>
                           </div>
-              
+
+
+                          <div id="deliverAddress" class="mt-3 row">
+
+                            
                           <div class="col-12">
                             <label for="address" class="form-label">Address</label>
                             <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
@@ -110,21 +134,13 @@
                               Zip code required.
                             </div>
                           </div>
-                        </div>
+
+
+                          </div>
+                                      </div>
               
                         <hr class="my-4">
               
-                        <div class="form-check">
-                          <input type="checkbox" class="form-check-input" id="same-address">
-                          <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
-                        </div>
-              
-                        <div class="form-check">
-                          <input type="checkbox" class="form-check-input" id="save-info">
-                          <label class="form-check-label" for="save-info">Save this information for next time</label>
-                        </div>
-              
-                        <hr class="my-4">
               
                         <h4 class="mb-3">Payment</h4>
               
