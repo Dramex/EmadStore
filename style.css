@@ -109,7 +109,11 @@ ul {
 }
 
 
-
 footer {
     margin-top: 60px;
 }
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+  }

@@ -1,97 +1,98 @@
 // load cart
 let cart = localStorage.cart ? JSON.parse(localStorage.cart) : [];
 
-window.onunload = function(event) { // save cart with unload
-    localStorage.cart = JSON.stringify(cart);
+window.onunload = function (event) {
+  // save cart with unload
+  localStorage.cart = JSON.stringify(cart);
 };
 
 let discountApplied = false;
 
 // Toast alert object to be used later
 const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 1000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  });
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 1000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
 
 const items = [
-    {
-        name: "Fancy Hoodie 1",
-        image: "./images/hoodie1.png",
-        price: 24,
-        sale: true
-    },
-    {
-        name: "Fancy Hoodie 2",
-        image: "./images/hoodie2.jpg",
-        price: 24
-    },
-    {
-        name: "Fancy Hoodie 3",
-        image: "./images/hoodie3.png",
-        price: 24
-    },
-    {
-        name: "Fancy Hoodie 4",
-        image: "./images/hoodie4.jpeg",
-        price: 24
-    },
-    {
-        name: "Fancy Hoodie 5",
-        image: "./images/hoodie5.jfif",
-        price: 24,
-        sale: true
-    },
-    {
-        name: "Fancy Hoodie 6",
-        image: "./images/hoodie6.webp",
-        price: 24
-    },
-    {
-        name: "Fancy Hoodie 7",
-        image: "./images/hoodie7.jpg",
-        price: 24
-    },
-    {
-        name: "Fancy Hoodie 8",
-        image: "./images/hoodie8.jpg",
-        price: 24, 
-        sale: true
-    },
-    {
-        name: "Fancy Hoodie 9",
-        image: "./images/hoodie9.jpg",
-        price: 24
-    },
-    {
-        name: "Fancy Hoodie 10",
-        image: "./images/hoodie10.jpg",
-        price: 24
-    },
-    {
-        name: "Fancy Hoodie 11",
-        image: "./images/hoodie11.jpg",
-        price: 24,
-        sale: true
-    },
-    {
-        name: "Fancy Hoodie 12",
-        image: "./images/hoodie12.jfif",
-        price: 24
-    }
-]
+  {
+    name: "Fancy Hoodie 1",
+    image: "./images/hoodie1.png",
+    price: 24,
+    sale: true,
+  },
+  {
+    name: "Fancy Hoodie 2",
+    image: "./images/hoodie2.jpg",
+    price: 24,
+  },
+  {
+    name: "Fancy Hoodie 3",
+    image: "./images/hoodie3.png",
+    price: 24,
+  },
+  {
+    name: "Fancy Hoodie 4",
+    image: "./images/hoodie4.jpeg",
+    price: 24,
+  },
+  {
+    name: "Fancy Hoodie 5",
+    image: "./images/hoodie5.jfif",
+    price: 24,
+    sale: true,
+  },
+  {
+    name: "Fancy Hoodie 6",
+    image: "./images/hoodie6.webp",
+    price: 24,
+  },
+  {
+    name: "Fancy Hoodie 7",
+    image: "./images/hoodie7.jpg",
+    price: 24,
+  },
+  {
+    name: "Fancy Hoodie 8",
+    image: "./images/hoodie8.jpg",
+    price: 24,
+    sale: true,
+  },
+  {
+    name: "Fancy Hoodie 9",
+    image: "./images/hoodie9.jpg",
+    price: 24,
+  },
+  {
+    name: "Fancy Hoodie 10",
+    image: "./images/hoodie10.jpg",
+    price: 24,
+  },
+  {
+    name: "Fancy Hoodie 11",
+    image: "./images/hoodie11.jpg",
+    price: 24,
+    sale: true,
+  },
+  {
+    name: "Fancy Hoodie 12",
+    image: "./images/hoodie12.jfif",
+    price: 24,
+  },
+];
 const currentPage = window.location.pathname.split("/").pop();
 
 // header && footer - so we do it once not multiple times for each page
 
 const updateHeader = () => {
-    document.getElementById("header").innerHTML = `
+  document.getElementById("header").innerHTML = `
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">Emad Store</a>
@@ -101,13 +102,19 @@ const updateHeader = () => {
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link ${currentPage === 'index.html' ? 'active' : ''}" href="./index.html">Home</a>
+                  <a class="nav-link ${
+                    currentPage === "index.html" ? "active" : ""
+                  }" href="./index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link ${currentPage === 'about.html' ? 'active' : ''}" href="./about.html">About Us</a>
+                  <a class="nav-link ${
+                    currentPage === "about.html" ? "active" : ""
+                  }" href="./about.html">About Us</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link ${currentPage === 'team.html' ? 'active' : ''}" href="./team.html">Meet the team</a>
+                  <a class="nav-link ${
+                    currentPage === "team.html" ? "active" : ""
+                  }" href="./team.html">Meet the team</a>
                 </li>
 
 
@@ -120,10 +127,12 @@ const updateHeader = () => {
                     <i class="fas fa-shopping-cart"></i> ${cart.length} Items
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      ${cart.map(item => {
-                          return `<li><a class="dropdown-item" href="#">${item.name}</a></li>`
-                      }).join('')}
-                      <center><button type="button" class="btn btn-warning">Clear</button> <a href="checkout.html" class="btn btn-primary">Checkout</a></center>
+                      ${cart
+                        .map((item) => {
+                          return `<li><a class="dropdown-item" href="#">${item.name}</a></li>`;
+                        })
+                        .join("")}
+                      <center><button type="button" onclick="clearCart();" class="btn btn-warning">Clear</button> <a href="checkout.html" class="btn btn-primary">Checkout</a></center>
 
                   </ul>
                  
@@ -244,18 +253,20 @@ document.getElementById("footer").innerHTML = `
 
 `;
 
-
 // Home index page
-if(document.getElementById("myGrid")) {
+if (document.getElementById("myGrid")) {
   items.forEach((item, index) => {
-
     const node = document.createElement("div");
     const addToCartButton = document.createElement("a");
-  
+
     node.innerHTML = `
     <div class="card h-100">
     <!-- Sale badge-->
-    ${item.sale ? `<div class="badge badge-sale text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>` : ``}
+    ${
+      item.sale
+        ? `<div class="badge badge-sale text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>`
+        : ``
+    }
     <!-- Product image-->
     <img class="card-img-top" src="${item.image}">
     <!-- Product details-->
@@ -280,75 +291,87 @@ if(document.getElementById("myGrid")) {
         <div class="text-center"><a id="add-${index}" class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
     </div>
   </div>`;
-  
+
     document.getElementById("myGrid").appendChild(node);
-    document.getElementById("add-"+ index).addEventListener("click", () => {
-        
-        cart.push(item);
-            Toast.fire({
-              icon: 'success',
-              title: 'added to cart successfully.'
-         })
-  
-  
-  
-        updateHeader();
+    document.getElementById("add-" + index).addEventListener("click", () => {
+      cart.push(item);
+      Toast.fire({
+        icon: "success",
+        title: "added to cart successfully.",
+      });
+
+      updateHeader();
     });
   });
-  
 }
 
+const clearCart = () => {
+  Toast.fire({
+    icon: "success",
+    title: "cart has been successfully.",
+  });
+  cart = [];
+  updateHeader();
+  updateCheckout();
+}
 // CHECKOUT PAGE
-document.getElementById("promoButton").addEventListener('click', (e) => {
+const promoButton = document.getElementById("promoButton");
+if(promoButton) promoButton.addEventListener("click", (e) => {
   e.preventDefault(); // prevent default browser behavior
   let code = document.getElementById("promo").value;
-  
-  if(code === "EMAD") {
-    discountApplied = code
+
+  if (code === "EMAD") {
+    discountApplied = code;
     Toast.fire({
-      icon: 'success',
-      title: 'discount has been applied successfully.'
-    })
+      icon: "success",
+      title: "discount has been applied successfully.",
+    });
+    promoButton.innerText = "Clear Discount";
+    document.getElementById("promo").disabled = true;
   } else {
     Toast.fire({
-      icon: 'error',
-      title: 'wrong coupon.'
-    })
+      icon: "error",
+      title: "wrong coupon.",
+    });
   }
-
   updateCheckout();
 });
+
 const updateCheckout = () => {
   const checkoutList = document.getElementById("checkoutCartList");
-  checkoutList.innerText = ''; // clear current elements
-  if(!document.getElementById("cartCount").innerText) return;
+  if(!checkoutList) return;
+  checkoutList.innerText = ""; // clear current elements
+  if (!document.getElementById("cartCount").innerText) return;
   document.getElementById("cartCount").innerText = cart.length;
   // add items to checkout page
-  cart.forEach(item => {
+  cart.forEach((item) => {
     const node = document.createElement("li");
-    node.className = "list-group-item d-flex justify-content-between lh-sm"
+    node.className = "list-group-item d-flex justify-content-between lh-sm";
     node.innerHTML = `
                   <div>
                     <h6 class="my-0">${item.name}</h6>
                     <small class="text-muted">Brief description</small>
                   </div>
-                  <span class="text-muted">$${item.price}</span>`
+                  <span class="text-muted">$${item.price}</span>`;
     checkoutList.appendChild(node);
   });
   // apply vat, discount, total
-  let total = items.map(it => it.price).reduce((a,b) => a+b,0);
+  let total = cart.map((it) => it.price).reduce((a, b) => a + b, 0);
   const vat = parseFloat(((total / 100) * 15).toFixed(2)); // i used parseFloat becouse toFixed converted the number to string
-  const discount = parseFloat(((total / 100) * 20).toFixed(2))
-  total = total + vat - discount;
-  
-  checkoutList.innerHTML =  checkoutList.innerHTML + 
-  `
+  const discount = discountApplied ? parseFloat(((total / 100) * 20).toFixed(2)) : 0;
+  total = parseFloat((total + vat - discount).toFixed(2));
+
+  checkoutList.innerHTML =
+    checkoutList.innerHTML +
+    `
   <li class="list-group-item d-flex justify-content-between bg-light">
     <span>VAT (+15%)</span>
     <strong>$${vat}</strong>
   </li>
 
-  ${discountApplied ? `
+  ${
+    discountApplied
+      ? `
   <li class="list-group-item d-flex justify-content-between bg-light">
   <div class="text-success">
   <h6 class="my-0">Promo code</h6>
@@ -356,17 +379,17 @@ const updateCheckout = () => {
   </div>
   <span class="text-success">−$${discount}</span>
 </li>
-  ` : ``}
+  `
+      : ``
+  }
 
 
   <li class="list-group-item d-flex justify-content-between bg-light">
     <span>Total (SAR)</span>
     <strong>$${total}</strong>
   </li>`;
-
-}
-
+};
 
 window.onload = () => {
   updateCheckout();
-}
+};
