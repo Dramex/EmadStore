@@ -392,7 +392,7 @@ const updateCheckout = () => {
       ? `
   <li class="list-group-item d-flex justify-content-between bg-light">
   <div class="text-success">
-  <h6 class="my-0">Promo code</h6>
+  <h6 class="my-0">Promo code (-20%)</h6>
   <small>EMAD</small>
   </div>
   <span class="text-success">−$${discount}</span>
@@ -408,6 +408,20 @@ const updateCheckout = () => {
   </li>`;
 };
 
+processOrder = () => {
+  let orderNumber = Math.floor(Math.random() * 100000);
+  const container = document.getElementById("container");
+  container.innerHTML = `<h3>Order number: ${orderNumber}</h3>`;
+  scroll(0,0);
+  Swal.fire(
+    'Order has been submited successfuly!',
+    `Your order number is ${orderNumber}`,
+    'success'
+  )
+
+}
+
 window.onload = () => {
   updateCheckout();
 };
+
