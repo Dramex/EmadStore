@@ -30,7 +30,7 @@ table {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.myGrid {
+#myGrid {
     display: grid;
     justify-content: center;
     grid-column-gap: 10px;
@@ -78,6 +78,7 @@ table {
 button, img {
     padding: 5px!important;
 }
+
 img {
     border: 1px solid black;
 }
@@ -88,10 +89,13 @@ ul {
 .card-img-top {
     width: 450px;
     height: 300px;
-    transition: transform .2s; /* Animation */
 }
-.card-img-top:hover {
-    transform: scale(1.5);
+
+.card {
+    transition: all .2s ease-in-out;
+}
+.card:hover {
+    transform: scale(1.1);
     z-index: 1000;
     position: sticky;
 }
